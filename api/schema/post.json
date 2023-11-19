@@ -1,0 +1,94 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Image Post",
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "description": "The unique identifier for the image post"
+      },
+      "title": {
+        "type": "string",
+        "description": "Title of the image post"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the image post"
+      },
+      "image_url": {
+        "type": "string",
+        "format": "uri",
+        "description": "URL of the image"
+      },
+      "author": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the author"
+          },
+          "username": {
+            "type": "string",
+            "description": "Username of the author"
+          },
+          "profile_url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the author's profile"
+          }
+        },
+        "required": ["id", "username"]
+      },
+      "tags": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        },
+        "description": "Tags associated with the image post"
+      },
+      "likes": {
+        "type": "integer",
+        "minimum": 0,
+        "description": "Number of likes for the image post"
+      },
+      "comments": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "description": "Unique identifier for the comment"
+            },
+            "text": {
+              "type": "string",
+              "description": "Content of the comment"
+            },
+            "author": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string",
+                  "description": "Unique identifier for the comment author"
+                },
+                "username": {
+                  "type": "string",
+                  "description": "Username of the comment author"
+                }
+              },
+              "required": ["id", "username"]
+            }
+          },
+          "required": ["id", "text", "author"]
+        },
+        "description": "Comments on the image post"
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "description": "Date and time when the image post was created"
+      }
+    },
+    "required": ["id", "title", "image_url", "author", "created_at"]
+  }
+  
